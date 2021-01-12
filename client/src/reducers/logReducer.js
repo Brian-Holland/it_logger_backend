@@ -43,9 +43,11 @@ export default (state = initialState, action) => {
 				logs: state.logs.map((log) => (log._id === action.payload._id ? action.payload : log))
 			};
 		case SEARCH_LOGS:
+			const regex = new RegExp(`${action.payload}`, 'gi');
 			return {
 				...state,
-				logs: action.payload
+				logs: state.logs.filter((log) => log.message.match(regex)),
+				loading: false
 			};
 		case SET_CURRENT:
 			return {

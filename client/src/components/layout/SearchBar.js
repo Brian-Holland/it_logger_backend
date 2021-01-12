@@ -7,7 +7,7 @@ const SearchBar = ({ searchLogs }) => {
 	const text = useRef('');
 
 	const onChange = (e) => {
-		searchLogs(text.current.value);
+		searchLogs(e.target.value.trim());
 	};
 
 	return (
