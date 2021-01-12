@@ -47,17 +47,18 @@ router.post('/', async (req, res) => {
 //@access  	Public
 router.put('/:id', async (req, res) => {
 	//pull contents from request
-	const { message, attention, tech } = req.body;
+	const { message, attention, tech, date } = req.body;
 
 	//construct log object to update with
 	const logFields = {};
 	if (message) logFields.message = message;
 	if (attention) logFields.attention = attention;
 	if (tech) logFields.tech = tech;
+	if (date) logFields.date = date;
 	//find log using id, update it, and return it as json
 	try {
 		let log = await Log.findById(req.params.id);
-
+		console.log(log);
 		if (!log) {
 			return res.status(404).json({ mg: 'Log not found' });
 		}
@@ -69,7 +70,7 @@ router.put('/:id', async (req, res) => {
 			},
 			{ new: true }
 		);
-
+		console.log(log);
 		res.json(log);
 	} catch (err) {
 		console.error(err.message);
