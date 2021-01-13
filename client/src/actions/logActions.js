@@ -107,9 +107,11 @@ export const searchLogs = (text) => {
 		try {
 			setLoading();
 
+			const res = await axios.get(`/api/logs/${text}`);
+
 			dispatch({
 				type: SEARCH_LOGS,
-				payload: text
+				payload: res.data
 			});
 		} catch (err) {
 			console.log(err);

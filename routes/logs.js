@@ -100,4 +100,23 @@ router.delete('/:id', async (req, res) => {
 	}
 });
 
+// @routes    Search logs
+// @desc      Search and Filter logs
+// @access    Public
+router.get('/:q', async (req, res) => {
+	try {
+		const logs = await Log.find({ logs: req._id }).sort({
+			date: -1
+		});
+		let searchContent = logs.filter((log) => {
+			let regex = new RegExp(req.params.q, 'gi');
+			return log.message.match(regex) || log.tech.match(regex);
+		});
+		res.json(searchContent);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
+
 module.exports = router;
