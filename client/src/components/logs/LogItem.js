@@ -22,8 +22,8 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
 				</a>
 				<br />
 				<span className="grey-text">
-					<span className="black-text">ID#{log._id} </span>
-					{''}
+					{/* {<span className="black-text">ID#{log._id} </span>}
+					{''} */}
 					Last updated by: <span className="black-text">{log.tech}</span> on{' '}
 					<Moment format="MMMM do YYYY, h:mm:ss a">{log.date}</Moment>
 				</span>
