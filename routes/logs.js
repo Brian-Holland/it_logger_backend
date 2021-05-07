@@ -88,7 +88,7 @@ router.delete('/:id', async (req, res) => {
 		let log = await Log.findById(req.params.id);
 
 		if (!log) {
-			return res.status(404).json({ mg: 'Log not found' });
+			return res.status(404).json({ msg: 'Log not found' });
 		}
 
 		await Log.findByIdAndDelete(req.params.id);
